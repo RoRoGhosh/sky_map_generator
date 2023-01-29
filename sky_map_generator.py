@@ -15,10 +15,9 @@ from astropy.utils.data import download_file
 #file to be converted put here
 print("Enter file address (with .csv at the end):")
 local_data_filename = input()
-f = h5py.File(local_data_filename, 'r')
 
 #Read Catalogue
-tbl = QTable.read(f)
+tbl = QTable.read(local_data_filename)
 objects = SkyCoord(
     ra=tbl['RAJ2000'],
     dec=tbl['DECJ2000'],
@@ -55,5 +54,4 @@ print("Enter new file name (with .png at the end):")
 name = input()
 plt.savefig(name)
 
-f.close()
 print("Done")
